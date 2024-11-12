@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Videoconferência</title>
+    <script src="https://media.twiliocdn.com/sdk/js/video/latest/twilio-video.min.js"></script>
+</head>
+<body>
+    <h2>Videoconferência</h2>
+    <div id="video-container"></div>
+    <script>
+        const token = "{{ token }}";  // O token gerado pelo servidor
+        const roomName = "{{ token.room_name }}";
+
+        Twilio.Video.connect(token, { name: roomName }).then(room => {
+            room.on('participantConnected', participant => {
+                console.log(`Participante conectado: ${participant.identity}`);
+            });
+            
+            room.on('disconnected', () => {
+                console.log("Desconectado da sala");
+            });
+
+            // Exibindo vídeo dos participantes
+            room.participants.forEach(participant => {
+                const div = document.createElement('div');
+                div.id = participant.sid;
+                document.getElementById('video-container').appendChild(div);
+                participant.tracks.forEach(track => {
+                    div.appendChild(track.attach());
+                });
+            });
+        }).catch(error => {
+            console.error('Erro ao conectar à sala:', error);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Plataforma de Serviços Online</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Início</a></li>
+                <li><a href="{{ url_for('prestador') }}">Cadastro de Prestador</a></li>
+                <li><a href="{{ url_for('cliente') }}">Cadastro de Cliente</a></li>
+                <li><a href="{{ url_for('listar_prestadores') }}">Lista de Prestadores</a></li>
+                <li><a href="{{ url_for('listar_clientes') }}">Lista de Clientes</a></li>
+                <li><a href="{{ url_for('pesquisa') }}">Pesquisa de Prestador</a></li>
+                <li><a href="{{ url_for('video', id=1) }}">Videoconferência (Simulação)</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>© 2024 Plataforma de Serviços Online</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <h2>Lista de Clientes</h2>
+    <ul>
+        {% for cliente in clientes %}
+        <li>{{ cliente.full_name }} - Preferências: {{ cliente.preferences }}</li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+</body>
+</html>

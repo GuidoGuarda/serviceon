@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Prestadores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <h2>Lista de Prestadores</h2>
+    <ul>
+        {% for prestador in prestadores %}
+        <li>{{ prestador.full_name }} - {{ prestador.specialty }}</li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+</body>
+</html>
